@@ -20,10 +20,11 @@ class Solution(object):
             else:
                 prefer = num
         return nums
-solution = Solution()
-mylist = [1,1,2]
-duplicateslist = solution.removeDuplicates(mylist)
-print duplicateslist
+if __name__ == '__main__':
+    solution = Solution()
+    mylist = [1,1,2,4,4,5]
+    duplicateslist = solution.removeDuplicates(mylist)
+    print duplicateslist
 
 
 
