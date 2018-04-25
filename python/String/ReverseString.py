@@ -6,6 +6,14 @@
 # Example:
 # Given s = "hello", return "olleh".
 class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        ret = s[::-1]
+        print ret
+        return ret
     def reverseString1(self, s):
         """
         :type s: str
@@ -119,4 +127,4 @@ Taos
 Salado
 Olfe
 Camag'''
-    solution.reverseString1(s)
+    solution.reverseString(s)
