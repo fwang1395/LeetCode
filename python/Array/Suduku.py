@@ -97,6 +97,21 @@ class Solution(object):
             return False
         else:
             return True
+    '''
+    sample 66 ms submission
+    '''
+    def isValidSudoku1(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        seen = []
+        for i, row in enumerate(board):
+            for j, c in enumerate(row):
+                if c != '.':
+                    seen += (c,j),(i,c),(i/3,j/3,c),
+        print seen
+        return len(seen) == len(set(seen))
 if __name__ == '__main__':
     board = [
           ["8","3",".",".","7",".",".",".","."],
@@ -110,7 +125,7 @@ if __name__ == '__main__':
           [".",".",".",".","8",".",".","7","9"]
         ]
     solution = Solution()
-    print solution.isValidSudoku(board)
+    print solution.isValidSudoku1(board)
     board = [
       ["5","3",".",".","7",".",".",".","."],
       ["6",".",".","0","9","5",".",".","."],
@@ -123,7 +138,7 @@ if __name__ == '__main__':
       [".",".",".",".","8",".",".","7","9"]
     ]
 
-    print solution.isValidSudoku(board)
+    print solution.isValidSudoku1(board)
 
 
 
