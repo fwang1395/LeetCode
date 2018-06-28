@@ -33,7 +33,6 @@ class Solution(object):
         while string_y[0] == '0':
             length = len(string_y)
             string_y = string_y[1::] if length>1 else "0"
-        
         string_y = flag+string_y
         ret = int(string_y) 
         return ret if  ret >= -2147483648 and ret < 2147483648 else 0
