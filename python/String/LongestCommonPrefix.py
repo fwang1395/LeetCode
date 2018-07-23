@@ -23,49 +23,155 @@ All given inputs are in lowercase letters a-z.
 #!/usr/bin/python
 # _*_ coding=UTF-8 _*_
 class Solution(object):
+    '''
+    my,Runtime: 112 ms
+    '''
     def longestCommonPrefix(self,strs):
         """
         :type strs: List[str]
         :rtype: str
         """
         length = len(strs)
-        print length
         if length < 1:return ""
         if length < 2: return strs[0]
-        str0 = strs[0]
-        lenstr0 = len(str0)
+        shortString = self.getShortString(strs)
+        lenShort = len(shortString)
         max_index,index = 0,0
-        while index < lenstr0:
+        while index < lenShort:
             print "index:",index
             for each in strs:
-                print "each:",each,"len each:",len(each)
-                if index >= len(each):
-                    max_index = index-1 if (index-1)>=1 else 1
-                    print "if max_index1 ",max_index
-                    return str0[0:max_index]
-                elif index == 0 and str0[0:1] != each[0:1]:
-                    print "elif1"
+                if index == 0 and shortString[0:1] != each[0:1]:
                     return ""
-                elif str0[0:index+1] != each[0:index+1]:
-                    print "elif2"
+                elif shortString[0:index+1] != each[0:index+1]:
                     max_index = index if (index-1)>=0 else 1
-                    print "max_index2 ",max_index
-                    return str0[0:max_index]
+                    return shortString[0:max_index]
                 else:
                     print "else"
             index += 1
             max_index = index
-            print "while max_index ",max_index
-        print "return max_index:",max_index
-        return str0[0:max_index] if max_index>0 else str0[0:max_index+1]
+        return shortString[0:max_index] if max_index>0 else shortString[0:1]
+
+    def getShortString(self,strs):
+        shortString=strs[0]
+        for str in strs:
+            if len(str)>=0 and len(str)<len(shortString):
+                shortString = str
+        return shortString
+    '''
+    sample 52 ms submission
+    '''
+    def longestCommonPrefix1(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if strs == []:
+            return ""
+        if len(strs) == 1:
+            return strs[0]
+        shortest_str = strs[0]
+        shortest_i = 0
+        for i,string in enumerate(strs):
+            if len(string) < len(shortest_str):
+                shortest_str = string
+                shortest_i = i
+        del strs[shortest_i]
+        print strs
+        matrix = defaultdict()
+        for i in range(1, len(shortest_str)+1):
+            matrix[shortest_str[0:i]] = 1
+        if len(shortest_str) == 0:
+            matrix[""] = 1
+        
+        print matrix
+        
+        for string in strs:
+            for i in range(1, len(string)+1):
+                if string[0:i] in matrix:
+                    matrix[string[0:i]] += 1
+        print matrix
+        common_prefixes = max(matrix.values())
+        print common_prefixes
+        if common_prefixes != len(strs)+1:
+            return ""
+        
+        longest_prefix = ""
+        for k,v in matrix.iteritems():
+            print k
+            print v
+            if v == common_prefixes and len(k) > len(longest_prefix):
+                longest_prefix = k
+        return longest_prefix
+'''
+sample 32 ms submission
+'''
+    def longestCommonPrefix2(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if strs == []:
+            return ""
+        length = []      
+        for xx in strs:
+            length.append(len(xx))
+        m = min(length)
+        if m == 0:
+            return ""
+        #if len(strs) == 0:
+         #   return ""
+        if len(strs) == 1:
+            return strs[0]
+
+        i = 0
+        while i < m:
+            n = 1
+            while n < len(strs):
+                if strs[n][i] != strs[0][i]:
+                    return strs[0][0:i]
+                else:
+                    n += 1
+            i += 1
+        return strs[0][0:(i)]
+
+    '''
+    sample 20 ms submission
+    '''
+    def longestCommonPrefix3(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        # result = ""
+        # if not len(strs): return result
+        # min_length = min(map(len, strs))
+        # for i in range(min_length):
+        #     char = strs[0][i]
+        #     for s in strs:
+        #         if s[i] != char:
+        #             return result
+        #     result+=char
+        # return result
+        
+        # Optimal:
+        if not strs:
+            return ""
+        
+        for i, string in enumerate(zip(*strs)):
+            if len(set(string)) > 1:
+                return strs[0][:i]
+        
+        return min(strs)
+
 
 if __name__ == '__main__':  
     solution = Solution()
     strs = ["flower","flow","flight"]
-    strs = ["aa","a"]
-    strs = ['a','aa']
-    strs = ['aa','ab']
-    strs = ['aa','aa']
+    # strs = ["aa","a"]
+    # strs = ['a','aa']
+    # strs = ['aa','ab']
+    # strs = ['aa','aa']
+   
     print strs
     print solution.longestCommonPrefix(strs);
 

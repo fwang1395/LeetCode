@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: UTF-8 -*-
+# _*_ coding: UTF-8 _*_
 class Solution(object):
     def maxProfit(self, prices):
         """
