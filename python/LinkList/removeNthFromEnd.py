@@ -54,3 +54,4 @@ class Solution(object):
         else:
             preferNNode.next = None
         return head
+        
