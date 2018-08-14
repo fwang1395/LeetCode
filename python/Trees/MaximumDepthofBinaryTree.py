@@ -26,7 +26,7 @@ return its depth = 3.
 # _*_ coding=UTF-8 _*_
 
 
-Definition for a binary tree node.
+# Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -35,12 +35,13 @@ class TreeNode(object):
 class CreateTree(object):
     def __init__(self,preOrderList):
         self.preOrderList = preOrderList
+
     '''创建二叉树，返回树的根节点
     '''
     def createTree():
         preOrderList = self.preOrderList
-        for item in preOrderList:
-            
+        
+
 
 
 class Solution(object):

@@ -1,6 +1,4 @@
 <?php
-
-
 Class BTNode                         // 节点类
 {
     public $data;
@@ -106,12 +104,12 @@ $tree = new BinaryTree($data);
 
 $root = $tree->CreateBT();
 
-var_dump($root);
+// var_dump($root);
 
 $tree->PreOrder($root);
 echo "<br>";
-$tree->InOrder($root);
-echo "<br>";
-$tree->PosOrder($root);
-echo "<br>";
-$tree->LeverOrder($root);
+// $tree->InOrder($root);
+// echo "<br>";
+// $tree->PosOrder($root);
+// echo "<br>";
+// $tree->LeverOrder($root);

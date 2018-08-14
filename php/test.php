@@ -489,8 +489,6 @@ class MyDestructableClass {
 $obj = new MyDestructableClass();
 $obj->show();
 
-// In constructor
-// show
-// Destroying MyDestructableClass
+    //  
 ?>
 
