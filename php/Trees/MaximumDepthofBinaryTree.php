@@ -49,7 +49,7 @@ class CreateTree
         $node = array_shift($this->nodeList);
         if ($node == null){
            return 0;
-        }   
+        }
         elseif($node == "#"){
             $root = null;
         }
@@ -63,7 +63,6 @@ class CreateTree
 
      public function createBinaryTreeByLevelOrder(){
         $node = array_shift($this->nodeList);
-
         if ($node == null){
            return 0;
         }   
@@ -97,8 +96,6 @@ class CreateTree
     }
 
 
-   
-
     public function maxDepth($node)
     {
         if($node == null ){
@@ -129,6 +126,37 @@ class CreateTree
         }
         return $level;
     }
+
+    public function isValidBSTByInOrder($node){
+        $inOrderList = [];
+        $this->inOrderRecursion($node,$inOrderList);
+        print_r($inOrderList);
+        $count = count($inOrderList);
+        $index = 0;
+        while($index < ($count -1)){
+            if( $inOrderList[$index] < $inOrderList[$index+1]){
+                $index++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function inOrderRecursion($node,&$inOrderList){
+        if($node == NULL){
+            return null;
+        }
+        if($node->left !=NULL){
+            $this->inOrderRecursion($node->left,$inOrderList);
+        }
+        $inOrderList[] = $node->val;
+        if($node->right !=NULL){
+            $this->inOrderRecursion($node->right,$inOrderList);
+        }
+    }
+
 }
 
 $list = array(8,4,12,2,6,11,15,1,3,5,7);
@@ -136,16 +164,23 @@ var_dump($list);
 $tree = new CreateTree($list);
 // $root = $tree->createBinaryTreeByPreOrder();
 $root = $tree->createBinaryTreeByLevelOrder();
-// var_dump($root);
-$maxDep = $tree->maxDepth($root);
+var_dump($root);
+// $maxDep = $tree->maxDepth($root);
 
-echo "maxDepth:${maxDep}";
+// echo "maxDepth:${maxDep}";
+
+// $maxDep2 = $tree->maxDepth2($root);
+
+// echo "maxDepth:${maxDep2}";
 
 
+echo $tree->isValidBSTByInOrder($root);
 
-$maxDep2 = $tree->maxDepth2($root);
-
-echo "maxDepth:${maxDep2}";
+// $inOrderList = [];
+// $tree->inOrderRecursion($root,&$inOrderList);
+// 
+// 
+// print_r($inOrderList);
 
 
 
