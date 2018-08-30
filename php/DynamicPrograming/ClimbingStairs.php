@@ -42,7 +42,7 @@ f(n) = f(n-1) + f(n-2)
 function climbStairs1($n){
 	if($n == 1) return 1;
 	if($n == 2) return 2;
-	return climbStairs1(n-1)+climbStairs1(n-2);
+	return climbStairs1($n-1)+climbStairs1($n-2);
 }
 
 //非递归
@@ -64,3 +64,6 @@ function climbStairs($n){
 
 
 print_r(climbStairs(10));
+
+
+print_r(climbStairs1(10));
