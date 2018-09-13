@@ -66,23 +66,29 @@ function maxSubArray($nums){
  */
 function maxSubArray2($nums,$left,$right){
 	if($left >= $right){
-		return $nums[$left];
+		return $nums[$right];
 	}
 	$mid = $left + intval(($right-$left)/2);
 	$l_max = maxSubArray2($nums,$left,$mid-1);
 	$r_max = maxSubArray2($nums,$mid+1,$right);
 	$middle = $nums[$mid];
-	for($i = $mid-1,$temp = $mid;$i > $left;$i--){
+	for($i = $mid-1,$temp = $middle;$i >= $left;$i--){
 		$temp += $nums[$i];
 		$middle = max($temp,$middle);
 	}
-	for($j=$mid+1,$temp=$mid+1;$j<$right;$j++){
+	for($j=$mid+1,$temp=$middle;$j<=$right;$j++){
 		$temp += $nums[$j];
 		$middle = max($middle,$temp);
 	}
-	return max($middle,max($left,$right));
+
+	echo("left:{$left},l_max:{$l_max},right:{$right},r_max:{$r_max},mid:{$mid},middle:{$middle}\n\r");
+	return max($middle,max($l_max,$r_max));
 }
 
 
+
 $nums =  [-2,1,-3,4,-1,2,1,-5,4];
-print_r(maxSubArray($nums));
+print_r("\n\rresult1:".maxSubArray($nums)."\n\r");
+
+$count = count($nums);
+print_r("\n\rresult2:".maxSubArray2($nums,0,$count-1));
