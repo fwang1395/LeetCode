@@ -43,12 +43,12 @@ class solution4
 //        echo "$left $right\n";exit();
 //        $leftValue = $this->getMiddleNumber($nums1,0,$nums2,0,$left);
 //        echo "\n result= $leftValue";exit();
-//        $rightValue = $this->getMiddleNumber($nums1,0,$nums2,0,$right);
-//        echo "\n result= $rightValue";exit();
+        $rightValue = $this->getMiddleNumber($nums1,0,$nums2,0,$right);
+        echo "\n result= $rightValue";exit();
 
 
-        return ($this->getMiddleNumber($nums1,0,$nums2,0,$left)
-                + $this->getMiddleNumber($nums1,0,$nums2,0,$right))/2;
+//        return ($this->getMiddleNumber($nums1,0,$nums2,0,$left)
+//                + $this->getMiddleNumber($nums1,0,$nums2,0,$right))/2;
 
 
     }
@@ -81,15 +81,15 @@ class solution4
      * @return mixed
      */
     function getMiddleNumber($nums1,$i,$nums2,$j,$k){
-//        echo json_encode($nums1). " ".json_encode($nums2)." ";
-//        echo "i= $i j=$j k= $k ";
+        echo json_encode($nums1). " ".json_encode($nums2)." ";
+        echo "i= $i j=$j k= $k ";
         $count1 = count($nums1);
         $count2 = count($nums2);
         if($i>=$count1){
             return $nums2[$j+$k-1];
         }
         if($j>= $count2){
-            return $nums1[$j+$k-1];
+            return $nums1[$i+$k-1];
         }
         if($k == 1){
             return min($nums1[$i],$nums2[$j]);
@@ -99,7 +99,7 @@ class solution4
         $midV1 = $half1<$count1 ? $nums1[$half1]:PHP_INT_MAX;
         $midV2 = $half2<$count2 ? $nums2[$half2]:PHP_INT_MAX;
 
-//        echo "half1=$half1 half2= $half2   midV1 = $midV1  midV2=$midV2 \n";
+        echo "half1=$half1 half2= $half2   midV1 = $midV1  midV2=$midV2 \n";
         if($midV1<$midV2){
             return $this->getMiddleNumber($nums1,$i+ floor($k/2),$nums2,$j,$k-floor($k/2));
         }
@@ -112,7 +112,7 @@ class solution4
 }
 
 $solution = new solution4();
-$nums1 = [1,3,5,7,9];
-$nums2 = [2,4,6,8];
+$nums1 = [1];
+$nums2 = [1];
 
 echo $solution->findMedianSortedArrays($nums1,$nums2);
